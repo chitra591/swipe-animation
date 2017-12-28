@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import Deck from './src/Deck';
 
@@ -18,26 +22,43 @@ export default class App extends React.Component {
   renderCard(item) {
     return (
       <Card
+        key={item.id}
         title={item.text}
         image={{ uri: item.uri }}
       >
-        <Text style={{ marginBottom: 10}}>
-          Customizable card
+        <Text style={{ marginBottom: 10 }}>
+          I can customize card further
         </Text>
         <Button
           icon={{ name: 'code' }}
-          backgroundColor='#03A9F4'
-          title='View Now!'
+          backgroundColor="#03A9F4"
+          title="View Now!"
+        />
+      </Card>
+    )
+  }
+
+  renderNoMoreCards() {
+    return (
+      <Card title="All Done!">
+        <Text style={{ marginBottom: 10 }}>
+          There is no more content here!
+        </Text>
+        <Button
+          backgroundColor="#03A9F4"
+          title="Get More!"
         />
       </Card>
     );
   }
+
   render() {
     return (
       <View style={styles.container}>
         <Deck
           data={DATA}
           renderCard={this.renderCard}
+          renderNoMoreCards={this.renderNoMoreCards}
         />
       </View>
     );
@@ -47,6 +68,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
 });
